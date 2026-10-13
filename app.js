@@ -1,4 +1,4 @@
-const API='https://v3.football.api-sports.io';
+const API='https:/const API = 'https://api.footballsoccerapi.com/v1';
 const $=id=>document.getElementById(id);
 const todayLocal=()=>{const d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`};
 $('matchDate').value=todayLocal();
@@ -8,7 +8,7 @@ function status(msg,kind=''){ $('status').textContent=msg; $('status').className
 function safe(s){return String(s??'—').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
 async function api(path){
  const key=storedKey(); if(!key) throw new Error('Falta la clave API. Abre Ajustes ⚙ y guárdala.');
- const r=await fetch(API+path,{headers:{'x-apisports-key':key}});
+ const r=await fetch(headers: { 'X-API-Key': key }
  if(!r.ok) throw new Error(`API respondió HTTP ${r.status}. Comprueba la clave o el límite de consultas.`);
  const j=await r.json();
  if(j.errors && Object.keys(j.errors).length) throw new Error(JSON.stringify(j.errors));
