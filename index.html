@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#101827">
+<meta name="description" content="Estadísticas de fútbol: córners, tarjetas y últimos enfrentamientos.">
+<link rel="manifest" href="./manifest.json">
+<link rel="icon" href="./icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="./styles.css">
+<title>Fútbol Analytics</title>
+</head>
+<body>
+<header class="top">
+  <div class="brandmark">FA</div>
+  <div><h1>Fútbol Analytics</h1><p>Datos para analizar cada partido</p></div>
+  <button id="settingsBtn" class="iconbtn" aria-label="Ajustes">⚙</button>
+</header>
+<main>
+  <section class="panel intro">
+    <div class="eyebrow">PANEL DE PARTIDOS</div>
+    <h2>Partidos del día</h2>
+    <div class="toolbar">
+      <input type="date" id="matchDate" aria-label="Fecha de partidos">
+      <button id="loadBtn" class="primary">Cargar</button>
+    </div>
+    <label class="fieldlabel" for="leagueFilter">Competición</label>
+    <select id="leagueFilter">
+      <option value="all">Todas las competiciones disponibles</option>
+      <option value="140">LaLiga</option><option value="39">Premier League</option>
+      <option value="2">Champions League</option><option value="61">Ligue 1</option>
+      <option value="78">Bundesliga</option><option value="135">Serie A italiana</option>
+      <option value="141">Segunda División española</option><option value="71">Brasileirão Serie A</option>
+      <option value="128">Primera División argentina</option>
+    </select>
+    <p class="muted small">Las competiciones se mostrarán si la API devuelve partidos para la fecha seleccionada.</p>
+  </section>
+
+  <div id="status" class="status" role="status">Añade tu clave API en Ajustes para cargar los partidos reales.</div>
+  <section id="matches" class="matches"></section>
+
+  <section class="panel note">
+    <h3>Qué incluye el análisis</h3>
+    <div class="feature"><span>◉</span><div><b>Córners</b><p>Media a favor y en contra, y total por partido.</p></div></div>
+    <div class="feature"><span>▤</span><div><b>Tarjetas</b><p>Amarillas y rojas por equipo, si están disponibles.</p></div></div>
+    <div class="feature"><span>↔</span><div><b>Últimos 5 + H2H</b><p>Local en casa, visitante fuera y cinco enfrentamientos directos.</p></div></div>
+  </section>
+  <footer>Fútbol Analytics · Prototipo personal</footer>
+</main>
+
+<dialog id="settingsDialog">
+  <form method="dialog" id="settingsForm">
+    <div class="dialoghead"><h2>Ajustes de datos</h2><button class="iconbtn" value="cancel" aria-label="Cerrar">✕</button></div>
+    <p class="muted">Introduce tu clave de API-Football. Se guardará solo en este navegador del móvil.</p>
+    <label class="fieldlabel" for="apiKey">Clave API</label>
+    <input id="apiKey" type="password" autocomplete="off" placeholder="Pega aquí tu clave">
+    <label class="checkline"><input id="showKey" type="checkbox"> Mostrar clave</label>
+    <div class="warning"><b>Privacidad:</b> esta versión consulta la API directamente desde el navegador. No publiques la web con tu clave configurada ni compartas capturas de los ajustes. Para una versión publicada, conviene usar un proxy privado con la clave guardada en el servidor.</div>
+    <p class="small">Plan gratuito de referencia: 100 consultas al día. El análisis detallado consume consultas adicionales.</p>
+    <div class="dialogactions"><button id="clearKey" type="button" class="secondary">Borrar clave</button><button id="saveKey" value="default" class="primary">Guardar</button></div>
+    <p class="small">Crear cuenta: <a href="https://www.api-football.com/" target="_blank" rel="noreferrer">API-Football</a></p>
+  </form>
+</dialog>
+<script src="./app.js"></script>
+</body>
+</html>
